@@ -8,6 +8,9 @@ package io.codex.cryptogram;
  */
 public interface Algorithm {
 
+    /**
+     * @return 算法名称
+     */
     String algorithm();
 
 }

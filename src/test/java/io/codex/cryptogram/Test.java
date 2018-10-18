@@ -36,9 +36,9 @@ public class Test {
         String publicKey = codec.encode(keyPair.getPublic().getEncoded());
         String privateKey = codec.encode(keyPair.getPrivate().getEncoded());
 
-        String signature = cryptography.sign("123", privateKey);
+        String signature = cryptography.sign("message", privateKey);
         System.out.println(signature);
-        boolean verified = cryptography.verify("123", signature, publicKey);
+        boolean verified = cryptography.verify("message", signature, publicKey);
         System.out.println(verified);
     }
 
