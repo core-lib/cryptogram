@@ -1,7 +1,7 @@
 package io.codex.cryptogram.verification;
 
 /**
- * SHA256算法验证提供器
+ * SHA-256算法验证提供器
  *
  * @author 杨昌沛 646742615@qq.com
  * 2018/10/18
@@ -9,6 +9,6 @@ package io.codex.cryptogram.verification;
 public class SHA256VerificationProvider extends MDVerificationProvider {
 
     public SHA256VerificationProvider() {
-        super("SHA256");
+        super("SHA-256");
     }
 }
