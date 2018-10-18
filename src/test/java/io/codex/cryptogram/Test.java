@@ -36,9 +36,11 @@ public class Test {
         String publicKey = codec.encode(keyPair.getPublic().getEncoded());
         String privateKey = codec.encode(keyPair.getPrivate().getEncoded());
 
-        String signature = cryptography.sign("message", privateKey);
+        long now = System.currentTimeMillis();
+
+        String signature = cryptography.sign("message", "POST /api/purchase?", "&timestamp=" + now, privateKey);
         System.out.println(signature);
-        boolean verified = cryptography.verify("message", signature, publicKey);
+        boolean verified = cryptography.verify("message", "POST /api/purchase?", "&timestamp=" + now, signature, publicKey);
         System.out.println(verified);
     }
 
