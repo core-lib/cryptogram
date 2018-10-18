@@ -2,6 +2,7 @@ package io.codex.cryptogram.flatting;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * 数组类型的摊平器
@@ -16,7 +17,7 @@ public class ArrayFlatter implements Flatter<Object> {
     }
 
     public String flat(Object value, FlattingProvider provider) {
-        ArrayList<Object> collection = new ArrayList<Object>();
+        Collection<Object> collection = new ArrayList<Object>();
         int length = Array.getLength(value);
         for (int i = 0; i < length; i++) {
             Object val = Array.get(value, i);
