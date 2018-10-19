@@ -46,9 +46,20 @@ public class Testing {
         param.put("username", "codex");
         param.put("password", "codex");
 
-        String signature = cryptography.sign(param, secretKey);
-        boolean verified = cryptography.verify(param, signature, secretKey);
-        assert verified : "A serious bug";
+        {
+            // HmacSHA256("{username=codex&password=codex}", "io.codex.cryptogram")
+            String signature = cryptography.sign(param, secretKey);
+            boolean verified = cryptography.verify(param, signature, secretKey);
+            assert verified : "A serious bug";
+        }
+
+        {
+            // HmacSHA256("POST /login?{username=codex&password=codex}&timestamp=1539851150142", "io.codex.cryptogram")
+            long timestamp =1539851150142L;
+            String signature = cryptography.sign(param, "POST /login?", "&timestamp=" + timestamp, secretKey);
+            boolean verified = cryptography.verify(param, "POST /login?", "&timestamp=" + timestamp, signature, secretKey);
+            assert verified : "A serious bug";
+        }
     }
 
 }
