@@ -9,7 +9,7 @@ package io.codex.cryptogram.decoding;
 public class PlainDecoder implements Decoder {
 
     public String algorithm() {
-        return "plain";
+        return "Plain";
     }
 
     public byte[] decode(String data) {

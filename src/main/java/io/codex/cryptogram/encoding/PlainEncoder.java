@@ -9,7 +9,7 @@ package io.codex.cryptogram.encoding;
 public class PlainEncoder implements Encoder {
 
     public String algorithm() {
-        return "plain";
+        return "Plain";
     }
 
     public String encode(byte[] data) {

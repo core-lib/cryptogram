@@ -3,10 +3,10 @@ package io.codex.cryptogram;
 import io.codex.cryptogram.codec.Base64Codec;
 import io.codex.cryptogram.codec.Codec;
 import io.codex.cryptogram.codec.HexCodec;
-import io.codex.cryptogram.flatting.DefaultFlattingProvider;
-import io.codex.cryptogram.flatting.FlattingProvider;
 import io.codex.cryptogram.signature.MD5WithRSASignatureProvider;
 import io.codex.cryptogram.signature.SignatureProvider;
+import io.codex.cryptogram.stringify.DefaultStringifyProvider;
+import io.codex.cryptogram.stringify.StringifyProvider;
 import io.codex.cryptogram.verification.MD5WithRSAVerificationProvider;
 import io.codex.cryptogram.verification.VerificationProvider;
 
@@ -19,7 +19,7 @@ import io.codex.cryptogram.verification.VerificationProvider;
 public class Cryptography {
     private final Codec signCodec;
     private final Codec keyCodec;
-    private final FlattingProvider flattingProvider;
+    private final StringifyProvider stringifyProvider;
     private final SignatureProvider signatureProvider;
     private final VerificationProvider verificationProvider;
 
@@ -27,16 +27,16 @@ public class Cryptography {
         this(
                 new HexCodec(),
                 new Base64Codec(),
-                new DefaultFlattingProvider(),
+                new DefaultStringifyProvider(),
                 new MD5WithRSASignatureProvider(),
                 new MD5WithRSAVerificationProvider()
         );
     }
 
-    public Cryptography(Codec signCodec, Codec keyCodec, FlattingProvider flattingProvider, SignatureProvider signatureProvider, VerificationProvider verificationProvider) {
+    public Cryptography(Codec signCodec, Codec keyCodec, StringifyProvider stringifyProvider, SignatureProvider signatureProvider, VerificationProvider verificationProvider) {
         this.signCodec = signCodec;
         this.keyCodec = keyCodec;
-        this.flattingProvider = flattingProvider;
+        this.stringifyProvider = stringifyProvider;
         this.signatureProvider = signatureProvider;
         this.verificationProvider = verificationProvider;
     }
@@ -46,7 +46,7 @@ public class Cryptography {
     }
 
     public String sign(Object value, String prefix, String suffix, String key) throws Exception {
-        String flatted = flattingProvider.flat(value);
+        String flatted = stringifyProvider.flat(value);
         String message = prefix + flatted + suffix;
         byte[] k = keyCodec.decode(key);
         byte[] sign = signatureProvider.sign(message.getBytes(), k);
@@ -58,7 +58,7 @@ public class Cryptography {
     }
 
     public boolean verify(Object value, String prefix, String suffix, String signature, String key) throws Exception {
-        String flatted = flattingProvider.flat(value);
+        String flatted = stringifyProvider.flat(value);
         String message = prefix + flatted + suffix;
         byte[] s = signCodec.decode(signature);
         byte[] k = keyCodec.decode(key);
@@ -73,8 +73,8 @@ public class Cryptography {
         return keyCodec;
     }
 
-    public FlattingProvider getFlattingProvider() {
-        return flattingProvider;
+    public StringifyProvider getStringifyProvider() {
+        return stringifyProvider;
     }
 
     public SignatureProvider getSignatureProvider() {
