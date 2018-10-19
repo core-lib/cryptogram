@@ -14,6 +14,11 @@
     <artifactId>cryptogram</artifactId>
     <version>1.0.0</version>
 </dependency>
+<dependency>
+    <groupId>commons-codec</groupId>
+    <artifactId>commons-codec</artifactId>
+    <version>1.11</version>
+</dependency>
 ```
 
 ## Usage
