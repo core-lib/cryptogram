@@ -1,23 +1,25 @@
-# cryptogram [![](https://www.jitpack.io/v/core-lib/cryptogram.svg)](https://www.jitpack.io/#core-lib/cryptogram)
+package io.codex.cryptogram;
 
-## Installation
-```xml
-<repositories>
-    <repository>
-        <id>jitpack.io</id>
-        <url>https://www.jitpack.io</url>
-    </repository>
-</repositories>
+import io.codex.cryptogram.codec.Codec;
+import io.codex.cryptogram.codec.HexCodec;
+import io.codex.cryptogram.codec.PlainCodec;
+import io.codex.cryptogram.signature.HMACSHA256SignatureProvider;
+import io.codex.cryptogram.signature.SignatureProvider;
+import io.codex.cryptogram.stringify.DefaultStringifyProvider;
+import io.codex.cryptogram.stringify.StringifyProvider;
+import io.codex.cryptogram.verification.HMACSHA256VerificationProvider;
+import io.codex.cryptogram.verification.VerificationProvider;
+import org.junit.Test;
 
-<dependency>
-    <groupId>com.github.core-lib</groupId>
-    <artifactId>cryptogram</artifactId>
-    <version>1.0.0</version>
-</dependency>
-```
+import java.util.HashMap;
+import java.util.Map;
 
-## Usage
-```java
+/**
+ * 测试类
+ *
+ * @author 杨昌沛 646742615@qq.com
+ * 2018/10/19
+ */
 public class Testing {
 
     @Test
@@ -45,4 +47,3 @@ public class Testing {
     }
 
 }
-```
