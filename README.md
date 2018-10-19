@@ -27,6 +27,7 @@ public class Testing {
         StringifyProvider stringifyProvider = new DefaultStringifyProvider();
         SignatureProvider signatureProvider = new HMACSHA256SignatureProvider();
         VerificationProvider verificationProvider = new HMACSHA256VerificationProvider();
+
         Cryptography cryptography = new Cryptography(
                 signCodec,
                 keyCodec,
@@ -34,12 +35,13 @@ public class Testing {
                 signatureProvider,
                 verificationProvider
         );
+
         String secretKey = "io.codex.cryptogram";
         Map<String, String> param = new HashMap<String, String>();
         param.put("username", "codex");
         param.put("password", "codex");
-        String signature = cryptography.sign(param, secretKey);
 
+        String signature = cryptography.sign(param, secretKey);
         boolean verified = cryptography.verify(param, signature, secretKey);
         assert verified : "A serious bug";
     }
