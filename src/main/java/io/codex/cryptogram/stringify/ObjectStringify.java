@@ -29,7 +29,7 @@ public class ObjectStringify implements Stringify<Object> {
                 Object val = method.invoke(value);
                 map.put(name, val);
             }
-            return provider.flat(map);
+            return provider.stringify(map);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

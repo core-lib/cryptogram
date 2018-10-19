@@ -21,13 +21,12 @@ public class StringifyProvider implements Algorithm {
     }
 
     public String algorithm() {
-        return "stringify";
+        return "Stringify";
     }
 
-    public String flat(Object value) {
+    public String stringify(Object value) {
         if (value == null) return null;
-        for (Stringify stringify : stringifies)
-            if (stringify.support(value.getClass())) return stringify.stringify(value, this);
+        for (Stringify stf : stringifies) if (stf.support(value.getClass())) return stf.stringify(value, this);
         throw new IllegalArgumentException("unsupported value type " + value.getClass());
     }
 

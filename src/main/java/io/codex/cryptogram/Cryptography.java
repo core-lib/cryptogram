@@ -46,7 +46,7 @@ public class Cryptography {
     }
 
     public String sign(Object value, String prefix, String suffix, String key) throws Exception {
-        String flatted = stringifyProvider.flat(value);
+        String flatted = stringifyProvider.stringify(value);
         String message = prefix + flatted + suffix;
         byte[] k = keyCodec.decode(key);
         byte[] sign = signatureProvider.sign(message.getBytes(), k);
@@ -58,7 +58,7 @@ public class Cryptography {
     }
 
     public boolean verify(Object value, String prefix, String suffix, String signature, String key) throws Exception {
-        String flatted = stringifyProvider.flat(value);
+        String flatted = stringifyProvider.stringify(value);
         String message = prefix + flatted + suffix;
         byte[] s = signCodec.decode(signature);
         byte[] k = keyCodec.decode(key);

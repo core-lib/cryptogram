@@ -72,6 +72,9 @@ public class Test {
         ObjectMapper mapper = new ObjectMapper();
         Map map = mapper.readValue(message.getBytes(), Map.class);
 
+        String string = cryptography.getStringifyProvider().stringify(map);
+        System.out.println(string);
+
         String signature = cryptography.sign(map, "POST /api/purchase?", "&timestamp=" + now, privateKey);
         System.out.println(signature);
         boolean verified = cryptography.verify(map, "POST /api/purchase?", "&timestamp=" + now, signature, publicKey);

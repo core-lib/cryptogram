@@ -23,7 +23,7 @@ public class ArrayStringify implements Stringify<Object> {
             Object val = Array.get(value, i);
             collection.add(val);
         }
-        return provider.flat(collection);
+        return provider.stringify(collection);
     }
 
 }

@@ -24,7 +24,7 @@ public class MapStringify implements Stringify<Map<String, ?>> {
             Object val = value.get(key);
             if (val == null) continue;
             if (builder.length() > 1) builder.append("&");
-            builder.append(key).append("=").append(provider.flat(val));
+            builder.append(key).append("=").append(provider.stringify(val));
         }
         builder.append("}");
         return builder.toString();

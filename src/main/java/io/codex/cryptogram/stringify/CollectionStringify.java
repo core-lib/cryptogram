@@ -20,7 +20,7 @@ public class CollectionStringify implements Stringify<Collection<?>> {
         for (Object val : value) {
             if (val == null) continue;
             if (builder.length() > 1) builder.append(",");
-            builder.append(provider.flat(val));
+            builder.append(provider.stringify(val));
         }
         builder.append("]");
         return builder.toString();
